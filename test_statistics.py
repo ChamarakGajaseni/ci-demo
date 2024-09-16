@@ -1,6 +1,6 @@
 """Testing methods using unittests."""
 from unittest import TestCase
-from statistics import variance, stdev
+from statistics import variance, stdev, average  # type: ignore
 from math import sqrt
 
 
@@ -29,7 +29,17 @@ class StatisticsTest(TestCase):
         # variance([0, 0.5, 1, 1.5, 2.0]) is 0.5
         self.assertEqual(sqrt(0.5), stdev([0, 0.5, 1, 1.5, 2]))
 
+    def test_empty_average_data(self):
+        """Test raising value error when there's no data."""
+        with self.assertRaises(ValueError):
+            average([])
 
-if __name__ == '__main__':
+    def test_empty_variance_data(self):
+        """Test raising value error when there's no data."""
+        with self.assertRaises(ValueError):
+            variance([])
+
+
+if __name__ == '__main__':  # pragma: no cover
     import unittest
     unittest.main(verbosity=1)
